@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "serchding"
+version = "0.1.0"
+description = "Fulltext search for linkding"
+authors = ["Xuanli <ludwigchen@proton.me>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+click = "^8.1.7"
+dacite = "^1.8.1"
+validators = "^0.34.0"
+requests = "^2.32.3"
+html2text = "^2024.2.26"
+whoosh = "^2.7.4"
+
+[tool.poetry.scripts]
+serchding = "serchding.serchding:cli"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
