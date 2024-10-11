@@ -40,7 +40,7 @@ serchding search stat*
 
 For full reference, see [whoosh docs](https://whoosh.readthedocs.io/en/latest/querylang.html).
 
-Dump JSON-formatted stored bookmarks:
+Dump JSON-formatted bookmarks:
 
 ```sh
 mkdir bookmarks
@@ -49,4 +49,4 @@ serchding dump bookmarks
 
 ## Limitations
 
-- Fulltext retrieval doesn't work with web pages with heavy javascript usage.
+- Fulltext retrieval doesn't work with javascript-dependent web pages.
