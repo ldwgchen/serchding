@@ -196,6 +196,17 @@ files = [
 dev = ["coverage", "coveralls", "pytest"]
 
 [[package]]
+name = "fake-useragent"
+version = "1.5.1"
+description = "Up-to-date simple useragent faker with real world database"
+optional = false
+python-versions = "*"
+files = [
+    {file = "fake-useragent-1.5.1.tar.gz", hash = "sha256:6387269f5a2196b5ba7ed8935852f75486845a1c95c50e72460e6a8e762f5c49"},
+    {file = "fake_useragent-1.5.1-py3-none-any.whl", hash = "sha256:57415096557c8a4e23b62a375c21c55af5fd4ba30549227f562d2c4f5b60e3b3"},
+]
+
+[[package]]
 name = "ftfy"
 version = "6.3.0"
 description = "Fixes mojibake and other problems with Unicode, after the fact"
@@ -322,4 +333,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "79231b85cc44203368c49934ed52cd9438c8e6e06c9d910192e54de27345540a"
+content-hash = "67ff998fcd946323a830e83bf074996ecbf119e896dede26be214b23c270de05"

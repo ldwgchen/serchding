@@ -13,6 +13,7 @@ import whoosh.index
 import whoosh.qparser
 import whoosh.searching
 from validators.url import url
+from fake_useragent import UserAgent
 
 from .decl import AuthInfo, schema
 
@@ -120,7 +121,7 @@ def validate_base_url(ctx, param, value):
 
 
 def get_fulltext_from_url(url: str) -> str:
-    r = requests.get(url, timeout=2)
+    r = requests.get(url, timeout=2, headers={"user-agent": UserAgent().random})
     r.raise_for_status()
     fulltext = _h.handle(r.text)
     fulltext = clean(
