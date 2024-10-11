@@ -1,3 +1,5 @@
+from cleantext import clean
+
 import re
 import typing as t
 from functools import partial, wraps
@@ -120,8 +122,13 @@ def validate_base_url(ctx, param, value):
 def get_fulltext_from_url(url: str) -> str:
     r = requests.get(url, timeout=3)
     fulltext = _h.handle(r.text)
-    fulltext = re.sub(r"\W", " ", fulltext)
-    fulltext = re.sub(r"\s\s*", " ", fulltext)
+    fulltext = clean(
+        fulltext,
+        no_line_breaks=True,
+        no_urls=True,
+        no_punct=True,
+        no_emoji=True,
+    )
     return fulltext
 
 
