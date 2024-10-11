@@ -120,7 +120,8 @@ def validate_base_url(ctx, param, value):
 
 
 def get_fulltext_from_url(url: str) -> str:
-    r = requests.get(url, timeout=3)
+    r = requests.get(url, timeout=2)
+    r.raise_for_status()
     fulltext = _h.handle(r.text)
     fulltext = clean(
         fulltext,
