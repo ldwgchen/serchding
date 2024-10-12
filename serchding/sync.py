@@ -26,13 +26,13 @@ def _pull_bookmarks(ctx: click.Context, authinfo: AuthInfo) -> list[Bookmark]:
             ctx.fail(f"Failed to get bookmarks: {repr(e)}")
         else:
             offset += 100
-    click.echo(f"Pulled {len(bookmarks)} bookmarks")
     return bookmarks
 
 
 def sync_run(ctx: click.Context):
     authinfo = get_authinfo(ctx)
     bookmarks = _pull_bookmarks(ctx, authinfo)
+    click.echo(f"Pulled {len(bookmarks)} bookmarks")
     ix = get_index(ctx)
 
     stored_bookmarks = []

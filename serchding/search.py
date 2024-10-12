@@ -1,3 +1,4 @@
+from io import StringIO
 import click
 import whoosh.highlight
 import whoosh.qparser
@@ -32,18 +33,18 @@ def search_run(ctx: click.Context, show: bool, query: tuple[str]):
         ctx.fail(f"Could not search for {q}: {repr(e)}")
     results.fragmenter.charlimit = None
     results.formatter = whoosh.highlight.UppercaseFormatter()
-    to_echo = []
-    for hit in results:
+    text = StringIO()
+    for i, hit in enumerate(results):
         stored_fields = hit.fields()
         title = stored_fields.get("title")
         url = stored_fields.get("url")
-        to_echo.append(f"--> {title} <{url}>:\n")
+        text.write(f"--> {title} <{url}>:\n")
         if show:
             fieldnames = set([mt[0] for mt in hit.matched_terms()])
             for fieldname in fieldnames:
-                to_echo.append(f'{fieldname}:"{hit.highlights(fieldname)}"\n')
-            to_echo.append("\n")
-    if show:
-        to_echo.pop()
-    click.echo("".join(to_echo), nl=False)
+                text.write(f'{fieldname}:"{hit.highlights(fieldname)}"\n')
+            if i < len(results) - 1:
+                text.write("\n")
+    click.echo("".join(text.getvalue()), nl=False)
+    text.close()
     s.close()

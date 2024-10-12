@@ -23,6 +23,7 @@ def api_get_bookmarks(
     results = j["results"]
     for result in results:
         result["id"] = str(result["id"])
+        result["tag_names"] = " ".join(result["tag_names"])
         result["date_added"] = datetime.fromisoformat(result["date_added"])
         result["date_modified"] = datetime.fromisoformat(result["date_modified"])
     bookmarks = [from_dict(Bookmark, result) for result in results]

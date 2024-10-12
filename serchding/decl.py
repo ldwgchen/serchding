@@ -24,7 +24,7 @@ class Bookmark:
     is_archived: t.Optional[bool]
     unread: t.Optional[bool]
     shared: t.Optional[bool]
-    tag_names: t.Optional[list[str]]
+    tag_names: t.Optional[str]
     date_added: datetime
     date_modified: datetime
     website_title: t.Optional[str]
