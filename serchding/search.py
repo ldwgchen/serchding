@@ -33,18 +33,18 @@ def search_run(ctx: click.Context, show: bool, query: tuple[str]):
         ctx.fail(f"Could not search for {q}: {repr(e)}")
     results.fragmenter.charlimit = None
     results.formatter = whoosh.highlight.UppercaseFormatter()
-    text = StringIO()
-    for i, hit in enumerate(results):
+    buffer = StringIO()
+    for hit in results:
         stored_fields = hit.fields()
         title = stored_fields.get("title")
         url = stored_fields.get("url")
-        text.write(f"--> {title} <{url}>:\n")
+        buffer.write(f"--> {title} <{url}>:\n")
         if show:
             fieldnames = set([mt[0] for mt in hit.matched_terms()])
             for fieldname in fieldnames:
-                text.write(f'{fieldname}:"{hit.highlights(fieldname)}"\n')
-            if i < len(results) - 1:
-                text.write("\n")
-    click.echo("".join(text.getvalue()), nl=False)
-    text.close()
+                buffer.write(f'{fieldname}:"{hit.highlights(fieldname)}"\n')
+            buffer.write("\n")
+    text = buffer.getvalue()[:-1] if show else buffer.getvalue()
+    click.echo(text, nl=False)
+    buffer.close()
     s.close()

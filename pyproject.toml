@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "serchding"
-version = "1.0.3"
+version = "1.0.4"
 description = "Fulltext search for linkding"
 authors = ["Xuanli <ludwigchen@proton.me>"]
 readme = "README.md"
